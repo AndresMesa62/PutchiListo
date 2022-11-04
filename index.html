@@ -351,13 +351,13 @@
 						<div class="news-text-box">
 						
 
-							<h3><img src="assets/img/noticia1.jpeg"><a href="404.html">¡Lo han aceptado! </a></h3>
+							<h3 id="ti1"><img src="assets/img/noticia1.jpeg"><a href="404.html">¡Lo han aceptado! </a></h3>
 							<p class="blog-meta">
 								<span class="author"><i class="fas fa-user"></i> Admin</span>
 								<span class="date"><i class="fas fa-calendar"></i> 28 Febrero, 2022</span>
 							</p>
-							<p class="excerpt">Te contamos los resultados de las primeras interacciones entre nuestro CEO Andres Mesa y los lideres de las comunidades Wayúu.</p>
-							<a href="404.html" class="read-more-btn">Seguir leyendo<i class="fas fa-angle-right"></i></a>
+							<p class="excerpt" id="c1"> </p>
+							<a href="404.html" class="read-more-btn" id="noticia1">Seguir leyendo<i class="fas fa-angle-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -365,13 +365,16 @@
 					<div class="single-latest-news">
 						<a href="404.html"><div class="latest-news-bg news-bg-2"></div></a>
 						<div class="news-text-box">
-							<h3><img src="assets/img/noticia2.jpeg"><a href="404.html">¡Tenemos las muestras!</a></h3>
+							<h3 id="ti2"><img src="assets/img/noticia2.jpeg"><a href="404.html">¡Tenemos las muestras!</a></h3>
 							<p class="blog-meta">
 								<span class="author"><i class="fas fa-user"></i> Admin</span>
 								<span class="date"><i class="fas fa-calendar"></i> 1 Marzo, 2022</span>
 							</p>
-							<p class="excerpt">Todo está listo para realizar las pruebas a las muestras de agua que actualmente se consume en la comunidad Wayúu, te contamos todo al respecto.</p>
-							<a href="404.html" class="read-more-btn">Seguir leyendo <i class="fas fa-angle-right"></i></a>
+							<p class="excerpt" id="c2"></p>
+							<a  href="./404.html" class="read-more-btn" >Seguir leyendo <i class="fas fa-angle-right"></i>
+								
+							
+							</a> 
 						</div>
 					</div>
 				</div>
@@ -414,7 +417,7 @@
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box about-widget">
 						<h2 class="widget-title">¿Interesado?</h2>
-						<p>No dudes en contactarte con nosotros, necesitamos de personas como tu para hacer nuestro proyecto realidad. Juntos podemos cambair el mundo.</p>
+						<p>No dudes en contactarte con nosotros, necesitamos de personas como tú para hacer nuestro proyecto realidad. Juntos podemos cambiar el mundo.</p>
 					</div>
 				</div>
 				
@@ -464,6 +467,32 @@
 		</div>
 	</div>
 	<!-- end copyright -->
+	<script>
+        const getNews = async () => {
+            const response = await fetch('http://localhost:8000/news');
+            const json = await response.json(); //extract JSON from the http response
+			const ti1=document.getElementById('ti1')
+			const c1=document.getElementById('c1')
+			ti1.innerText=json[1]["title"]
+			c1.innerText=json[1]["content"]
+			const ti2=document.getElementById('ti2')
+			const c2=document.getElementById('c2')
+			ti2.innerText=json[2]["title"]
+			c2.innerText=json[2]["content"]
+            for (var index = 0; index < json.length; index++) {
+                console.log(json[index]["title"])
+                console.log(json[index]["content"])
+            }
+        }
+        window.onload = getNews()
+    </script>
+
+
+
+
+
+
+
 	
 	<!-- jquery -->
 	<script src="assets/js/jquery-1.11.3.min.js"></script>
